@@ -50,6 +50,10 @@
     "./separator": {
       "types": "./dist/components/separator/index.d.ts",
       "default": "./dist/components/separator/index.js"
+    },
+    "./scroll-area": {
+      "types": "./dist/components/scroll-area/index.d.ts",
+      "default": "./dist/components/scroll-area/index.js"
     }
   },
   "files": [

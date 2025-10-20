@@ -74,6 +74,14 @@ export {
 
 export { SeparatorElement } from './components/separator/index.js';
 
+export {
+  ScrollAreaElement,
+  ScrollAreaViewportElement,
+  ScrollAreaScrollbarElement,
+  ScrollAreaThumbElement,
+  ScrollAreaCornerElement,
+} from './components/scroll-area/index.js';
+
 // Utilities
 export {
   VisuallyHiddenElement,
