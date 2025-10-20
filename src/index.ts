@@ -16,3 +16,14 @@ export {
   AccordionTriggerElement,
   AccordionContentElement,
 } from './components/accordion/index.js';
+
+// Utilities
+export {
+  VisuallyHiddenElement,
+  SlotElement,
+  PortalElement,
+  AccessibleIconElement,
+  DirectionProviderElement,
+  getDirection,
+  type Direction,
+} from './utilities/index.js';
