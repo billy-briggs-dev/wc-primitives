@@ -155,6 +155,12 @@ npm run lint
 
 # Type check
 npm run typecheck
+
+# Start Storybook
+npm run storybook
+
+# Build Storybook for deployment
+npm run build-storybook
 ```
 
 ## Architecture
