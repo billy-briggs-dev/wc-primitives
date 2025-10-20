@@ -72,6 +72,23 @@ export {
   ToolbarToggleItemElement,
 } from './components/toolbar/index.js';
 
+export { LabelElement } from './components/label/index.js';
+
+export {
+  HoverCardElement,
+  HoverCardTriggerElement,
+  HoverCardContentElement,
+} from './components/hover-card/index.js';
+
+export {
+  MenubarElement,
+  MenubarMenuElement,
+  MenubarTriggerElement,
+  MenubarContentElement,
+  MenubarItemElement,
+  MenubarSeparatorElement,
+} from './components/menubar/index.js';
+
 // Utilities
 export {
   VisuallyHiddenElement,

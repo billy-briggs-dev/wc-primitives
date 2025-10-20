@@ -46,6 +46,18 @@
     "./toolbar": {
       "types": "./dist/components/toolbar/index.d.ts",
       "default": "./dist/components/toolbar/index.js"
+    },
+    "./label": {
+      "types": "./dist/components/label/index.d.ts",
+      "default": "./dist/components/label/index.js"
+    },
+    "./hover-card": {
+      "types": "./dist/components/hover-card/index.d.ts",
+      "default": "./dist/components/hover-card/index.js"
+    },
+    "./menubar": {
+      "types": "./dist/components/menubar/index.d.ts",
+      "default": "./dist/components/menubar/index.js"
     }
   },
   "files": [
