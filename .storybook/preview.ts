@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/web-components-vite'
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
+import './themes.css';
 
 const preview: Preview = {
   parameters: {
@@ -9,6 +11,16 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    withThemeByDataAttribute({
+      themes: {
+        light: 'light',
+        dark: 'dark',
+      },
+      defaultTheme: 'dark',
+      attributeName: 'data-theme',
+    }),
+  ],
 };
 
 export default preview;
