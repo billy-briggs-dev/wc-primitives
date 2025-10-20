@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WC Primitives Demo - Accordion</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: #f5f5f5;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 2rem;
+      }
+
+      .demo-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #333;
+        font-size: 1.25rem;
+      }
+
+      /* Styling for the accordion - this is consumer-controlled */
+      wc-accordion {
+        display: block;
+        border: 1px solid #e5e5e5;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      wc-accordion-item {
+        display: block;
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      wc-accordion-item:last-child {
+        border-bottom: none;
+      }
+
+      wc-accordion-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1rem 1.25rem;
+        background: white;
+        border: none;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      wc-accordion-trigger:hover {
+        background-color: #f9f9f9;
+      }
+
+      wc-accordion-trigger[data-state='open'] {
+        background-color: #f9f9f9;
+      }
+
+      wc-accordion-trigger:focus {
+        outline: 2px solid #0066cc;
+        outline-offset: -2px;
+      }
+
+      wc-accordion-trigger[data-disabled] {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      wc-accordion-trigger::after {
+        content: '▼';
+        font-size: 0.75rem;
+        transition: transform 0.2s;
+      }
+
+      wc-accordion-trigger[data-state='open']::after {
+        transform: rotate(180deg);
+      }
+
+      wc-accordion-content {
+        display: block;
+        padding: 0 1.25rem 1rem 1.25rem;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      wc-accordion-content[data-state='closed'] {
+        display: none;
+      }
+
+      wc-accordion-content[data-state='open'] {
+        animation: slideDown 0.2s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .code-block {
+        background: #f5f5f5;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        margin-top: 1rem;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+      }
+
+      .info-box {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 4px;
+      }
+
+      .info-box strong {
+        color: #0066cc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>WC Primitives Demo</h1>
+    <p class="subtitle">Headless Web Component Primitives built with Lit 3</p>
+
+    <div class="demo-section">
+      <h2>Single Mode Accordion (Collapsible)</h2>
+      <p>Only one item can be open at a time, and clicking an open item closes it.</p>
+      
+      <wc-accordion type="single" collapsible>
+        <wc-accordion-item value="item-1">
+          <wc-accordion-trigger>What is WC Primitives?</wc-accordion-trigger>
+          <wc-accordion-content>
+            WC Primitives is a library of headless web components built with Lit 3. 
+            These components are framework-agnostic and provide accessible, composable UI primitives.
+          </wc-accordion-content>
+        </wc-accordion-item>
+        
+        <wc-accordion-item value="item-2">
+          <wc-accordion-trigger>Why headless components?</wc-accordion-trigger>
+          <wc-accordion-content>
+            Headless components provide behavior and accessibility without imposing styles. 
+            This gives you complete control over the appearance while ensuring proper functionality 
+            and accessibility out of the box.
+          </wc-accordion-content>
+        </wc-accordion-item>
+        
+        <wc-accordion-item value="item-3">
+          <wc-accordion-trigger>How do I use them?</wc-accordion-trigger>
+          <wc-accordion-content>
+            Simply import the components in your HTML or JavaScript, then style them with CSS. 
+            They work in any framework (React, Vue, Angular, etc.) or vanilla JavaScript.
+          </wc-accordion-content>
+        </wc-accordion-item>
+      </wc-accordion>
+    </div>
+
+    <div class="demo-section">
+      <h2>Multiple Mode Accordion</h2>
+      <p>Multiple items can be open at the same time.</p>
+      
+      <wc-accordion type="multiple">
+        <wc-accordion-item value="feature-1">
+          <wc-accordion-trigger>Accessible by Default</wc-accordion-trigger>
+          <wc-accordion-content>
+            All components follow WAI-ARIA patterns and include proper keyboard navigation, 
+            focus management, and screen reader support.
+          </wc-accordion-content>
+        </wc-accordion-item>
+        
+        <wc-accordion-item value="feature-2">
+          <wc-accordion-trigger>Framework Agnostic</wc-accordion-trigger>
+          <wc-accordion-content>
+            Built on Web Standards, these components work everywhere - React, Vue, Angular, 
+            Svelte, or vanilla JavaScript. No framework lock-in.
+          </wc-accordion-content>
+        </wc-accordion-item>
+        
+        <wc-accordion-item value="feature-3">
+          <wc-accordion-trigger>Fully Composable</wc-accordion-trigger>
+          <wc-accordion-content>
+            Components are designed to be composed together, giving you flexibility to create 
+            complex UI patterns while maintaining consistency.
+          </wc-accordion-content>
+        </wc-accordion-item>
+      </wc-accordion>
+    </div>
+
+    <div class="demo-section">
+      <h2>Disabled Accordion</h2>
+      <p>The entire accordion can be disabled, preventing user interaction.</p>
+      
+      <wc-accordion disabled>
+        <wc-accordion-item value="disabled-1">
+          <wc-accordion-trigger>This is disabled</wc-accordion-trigger>
+          <wc-accordion-content>
+            You won't be able to open this content.
+          </wc-accordion-content>
+        </wc-accordion-item>
+      </wc-accordion>
+    </div>
+
+    <div class="info-box">
+      <strong>Note:</strong> All styling you see is applied by the demo page. 
+      The components themselves are headless and come with no default styles. 
+      You have complete control over the appearance!
+    </div>
+
+    <script type="module">
+      // Import all accordion components
+      import '../src/components/accordion/accordion.ts';
+      import '../src/components/accordion/accordion-item.ts';
+      import '../src/components/accordion/accordion-trigger.ts';
+      import '../src/components/accordion/accordion-content.ts';
+
+      // Example: Listening to value changes
+      const accordions = document.querySelectorAll('wc-accordion');
+      accordions.forEach(accordion => {
+        accordion.addEventListener('value-change', (e) => {
+          console.log('Accordion value changed:', e.detail);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "name": "@wc-primitives/core",
+  "version": "0.1.0",
+  "description": "Headless Web Component Primitives built with Lit 3 - Framework agnostic, accessible UI components",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./accordion": {
+      "types": "./dist/components/accordion/index.d.ts",
+      "default": "./dist/components/accordion/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "web-components",
+    "lit",
+    "headless",
+    "radix",
+    "primitives",
+    "accessible",
+    "framework-agnostic"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "@vitest/ui": "^1.2.0",
+    "eslint": "^8.56.0",
+    "happy-dom": "^20.0.7",
+    "jsdom": "^27.0.1",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^1.2.0"
+  },
+  "dependencies": {
+    "lit": "^3.1.0"
+  }
+}
