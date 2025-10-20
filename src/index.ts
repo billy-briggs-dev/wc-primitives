@@ -36,3 +36,12 @@ export {
 } from './components/tabs/index.js';
 
 export { ToggleElement } from './components/toggle/index.js';
+
+export {
+  PopoverElement,
+  PopoverTriggerElement,
+  PopoverAnchorElement,
+  PopoverPortalElement,
+  PopoverContentElement,
+  PopoverCloseElement,
+} from './components/popover/index.js';
