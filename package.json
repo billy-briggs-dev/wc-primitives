@@ -46,6 +46,18 @@
     "./toolbar": {
       "types": "./dist/components/toolbar/index.d.ts",
       "default": "./dist/components/toolbar/index.js"
+    },
+    "./progress": {
+      "types": "./dist/components/progress/index.d.ts",
+      "default": "./dist/components/progress/index.js"
+    },
+    "./radio-group": {
+      "types": "./dist/components/radio-group/index.d.ts",
+      "default": "./dist/components/radio-group/index.js"
+    },
+    "./navigation-menu": {
+      "types": "./dist/components/navigation-menu/index.d.ts",
+      "default": "./dist/components/navigation-menu/index.js"
     }
   },
   "files": [

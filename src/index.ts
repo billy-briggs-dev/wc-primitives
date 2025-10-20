@@ -72,6 +72,25 @@ export {
   ToolbarToggleItemElement,
 } from './components/toolbar/index.js';
 
+export {
+  ProgressElement,
+  ProgressIndicatorElement,
+} from './components/progress/index.js';
+
+export {
+  RadioGroupElement,
+  RadioGroupItemElement,
+} from './components/radio-group/index.js';
+
+export {
+  NavigationMenuElement,
+  NavigationMenuListElement,
+  NavigationMenuItemElement,
+  NavigationMenuTriggerElement,
+  NavigationMenuContentElement,
+  NavigationMenuLinkElement,
+} from './components/navigation-menu/index.js';
+
 // Utilities
 export {
   VisuallyHiddenElement,
