@@ -37,7 +37,12 @@ export class AccordionItemElement extends PrimitiveElement {
     }
     
     this.setAttribute('data-state', this._getState());
-    this.setAttribute('data-disabled', this.disabled || this._accordion?.disabled ? '' : null!);
+    
+    if (this.disabled || this._accordion?.disabled) {
+      this.setAttribute('data-disabled', '');
+    } else {
+      this.removeAttribute('data-disabled');
+    }
     
     // Listen for value changes on the accordion
     this._accordion?.addEventListener('value-change', this._handleAccordionChange);
@@ -56,7 +61,11 @@ export class AccordionItemElement extends PrimitiveElement {
     super.updated(changedProperties);
     
     if (changedProperties.has('disabled')) {
-      this.setAttribute('data-disabled', this.disabled || this._accordion?.disabled ? '' : null!);
+      if (this.disabled || this._accordion?.disabled) {
+        this.setAttribute('data-disabled', '');
+      } else {
+        this.removeAttribute('data-disabled');
+      }
     }
     
     // Update state attribute

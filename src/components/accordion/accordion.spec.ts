@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import './accordion.js';
 import './accordion-item.js';
 import './accordion-trigger.js';

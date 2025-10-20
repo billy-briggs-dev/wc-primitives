@@ -74,7 +74,11 @@ export class AccordionElement extends PrimitiveElement {
     super.updated(changedProperties);
     
     if (changedProperties.has('disabled')) {
-      this.setAttribute('data-disabled', this.disabled ? '' : null!);
+      if (this.disabled) {
+        this.setAttribute('data-disabled', '');
+      } else {
+        this.removeAttribute('data-disabled');
+      }
     }
     
     if (changedProperties.has('orientation')) {

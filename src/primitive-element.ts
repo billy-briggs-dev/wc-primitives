@@ -24,7 +24,7 @@ export class PrimitiveElement extends LitElement {
    * Helper to generate unique IDs for accessibility
    */
   protected generateId(prefix: string): string {
-    return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
+    return `${prefix}-${Math.random().toString(36).slice(2, 11)}`;
   }
 
   /**
