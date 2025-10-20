@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
+import type { TabsElement } from './tabs.js';
 
 /**
  * Tabs Content Component
@@ -21,7 +22,7 @@ export class TabsContentElement extends PrimitiveElement {
   @property({ type: String })
   value = '';
 
-  private _tabs: any = null;
+  private _tabs: TabsElement | null = null;
 
   override connectedCallback() {
     super.connectedCallback();

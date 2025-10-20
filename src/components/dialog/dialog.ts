@@ -46,6 +46,8 @@ export class DialogElement extends PrimitiveElement {
   @property({ type: Boolean })
   modal = true;
 
+  private _previousFocus: Element | null = null;
+
   override connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'dialog');
@@ -102,7 +104,7 @@ export class DialogElement extends PrimitiveElement {
   private _handleDialogOpen() {
     // Store the element that triggered the dialog for focus return
     if (document.activeElement) {
-      (this as any)._previousFocus = document.activeElement;
+      this._previousFocus = document.activeElement;
     }
 
     // Trap focus in the dialog
@@ -111,11 +113,11 @@ export class DialogElement extends PrimitiveElement {
 
   private _handleDialogClose() {
     // Return focus to the trigger element
-    const previousFocus = (this as any)._previousFocus;
-    if (previousFocus && typeof previousFocus.focus === 'function') {
-      previousFocus.focus();
+    const previousFocus = this._previousFocus;
+    if (previousFocus && typeof (previousFocus as HTMLElement).focus === 'function') {
+      (previousFocus as HTMLElement).focus();
     }
-    (this as any)._previousFocus = null;
+    this._previousFocus = null;
   }
 
   private _trapFocus() {
@@ -136,7 +138,11 @@ export class DialogElement extends PrimitiveElement {
     const children = this.querySelectorAll(
       'wc-dialog-trigger, wc-dialog-portal, wc-dialog-overlay, wc-dialog-content'
     );
-    children.forEach((child) => (child as any).requestUpdate?.());
+    children.forEach((child) => {
+      if ('requestUpdate' in child && typeof child.requestUpdate === 'function') {
+        child.requestUpdate();
+      }
+    });
   }
 
   private _notifyChange() {

@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
+import type { TabsElement } from './tabs.js';
 
 /**
  * Tabs List Component
@@ -19,7 +20,7 @@ import { PrimitiveElement } from '../../primitive-element.js';
  */
 @customElement('wc-tabs-list')
 export class TabsListElement extends PrimitiveElement {
-  private _tabs: any = null;
+  private _tabs: TabsElement | null = null;
 
   override connectedCallback() {
     super.connectedCallback();

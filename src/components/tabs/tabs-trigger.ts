@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
+import type { TabsElement } from './tabs.js';
 
 /**
  * Tabs Trigger Component
@@ -22,7 +23,7 @@ export class TabsTriggerElement extends PrimitiveElement {
   @property({ type: Boolean })
   disabled = false;
 
-  private _tabs: any = null;
+  private _tabs: TabsElement | null = null;
   private _contentId = '';
 
   override connectedCallback() {

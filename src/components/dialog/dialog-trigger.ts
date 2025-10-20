@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
+import type { DialogElement } from './dialog.js';
 
 /**
  * Dialog Trigger Component
@@ -16,7 +17,7 @@ import { PrimitiveElement } from '../../primitive-element.js';
  */
 @customElement('wc-dialog-trigger')
 export class DialogTriggerElement extends PrimitiveElement {
-  private _dialog: any = null;
+  private _dialog: DialogElement | null = null;
 
   override connectedCallback() {
     super.connectedCallback();

@@ -1,6 +1,7 @@
 import { html, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
+import type { DialogElement } from './dialog.js';
 
 /**
  * Dialog Content Component
@@ -23,7 +24,7 @@ export class DialogContentElement extends PrimitiveElement {
   @property({ type: String })
   ariaLabel = '';
 
-  private _dialog: any = null;
+  private _dialog: DialogElement | null = null;
   private _titleId = '';
   private _descriptionId = '';
 

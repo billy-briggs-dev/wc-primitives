@@ -96,8 +96,16 @@ export class TabsElement extends PrimitiveElement {
     // Force child components to update
     const triggers = this.querySelectorAll('wc-tabs-trigger');
     const contents = this.querySelectorAll('wc-tabs-content');
-    triggers.forEach((trigger) => (trigger as any).requestUpdate?.());
-    contents.forEach((content) => (content as any).requestUpdate?.());
+    triggers.forEach((trigger) => {
+      if ('requestUpdate' in trigger && typeof trigger.requestUpdate === 'function') {
+        trigger.requestUpdate();
+      }
+    });
+    contents.forEach((content) => {
+      if ('requestUpdate' in content && typeof content.requestUpdate === 'function') {
+        content.requestUpdate();
+      }
+    });
   }
 
   private _notifyChange() {

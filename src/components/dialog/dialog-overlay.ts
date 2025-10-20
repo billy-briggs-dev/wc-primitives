@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
+import type { DialogElement } from './dialog.js';
 
 /**
  * Dialog Overlay Component
@@ -14,7 +15,7 @@ import { PrimitiveElement } from '../../primitive-element.js';
  */
 @customElement('wc-dialog-overlay')
 export class DialogOverlayElement extends PrimitiveElement {
-  private _dialog: any = null;
+  private _dialog: DialogElement | null = null;
 
   override connectedCallback() {
     super.connectedCallback();

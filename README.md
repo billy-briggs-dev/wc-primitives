@@ -100,6 +100,47 @@ A vertically stacked set of interactive headings that each reveal an associated 
 **Events**
 - `value-change` - Fires when open items change
 
+### Dialog
+
+A modal dialog that overlays content and traps focus within it.
+
+#### API Reference
+
+**wc-dialog**
+- `open`: `boolean` - The controlled open state of the dialog
+- `modal`: `boolean` - When true (default), clicking outside or pressing escape closes the dialog
+- `disabled`: `boolean` - Disable the dialog
+
+**Events**
+- `open-change` - Fires when the open state changes
+
+### Tabs
+
+A set of layered sections of content (tab panels) that are displayed one at a time.
+
+#### API Reference
+
+**wc-tabs**
+- `value`: `string` - The controlled active tab value
+- `disabled`: `boolean` - Disable the entire tabs component
+- `orientation`: `'horizontal' | 'vertical'` - Orientation of the tabs
+
+**Events**
+- `value-change` - Fires when the active tab changes
+
+### Toggle
+
+A two-state button that can be toggled on or off.
+
+#### API Reference
+
+**wc-toggle**
+- `pressed`: `boolean` - The pressed state of the toggle
+- `disabled`: `boolean` - Disable the toggle
+
+**Events**
+- `pressed-change` - Fires when the pressed state changes
+
 ## Styling
 
 All components are headless and come with no default styles. You have complete control over the appearance using CSS:
