@@ -72,6 +72,30 @@ export {
   ToolbarToggleItemElement,
 } from './components/toolbar/index.js';
 
+export {
+  CollapsibleElement,
+  CollapsibleTriggerElement,
+  CollapsibleContentElement,
+} from './components/collapsible/index.js';
+
+export {
+  DropdownMenuElement,
+  DropdownMenuTriggerElement,
+  DropdownMenuContentElement,
+  DropdownMenuItemElement,
+  DropdownMenuSeparatorElement,
+  DropdownMenuLabelElement,
+} from './components/dropdown-menu/index.js';
+
+export {
+  ContextMenuElement,
+  ContextMenuTriggerElement,
+  ContextMenuContentElement,
+  ContextMenuItemElement,
+  ContextMenuSeparatorElement,
+  ContextMenuLabelElement,
+} from './components/context-menu/index.js';
+
 // Utilities
 export {
   VisuallyHiddenElement,

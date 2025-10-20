@@ -46,6 +46,18 @@
     "./toolbar": {
       "types": "./dist/components/toolbar/index.d.ts",
       "default": "./dist/components/toolbar/index.js"
+    },
+    "./collapsible": {
+      "types": "./dist/components/collapsible/index.d.ts",
+      "default": "./dist/components/collapsible/index.js"
+    },
+    "./dropdown-menu": {
+      "types": "./dist/components/dropdown-menu/index.d.ts",
+      "default": "./dist/components/dropdown-menu/index.js"
+    },
+    "./context-menu": {
+      "types": "./dist/components/context-menu/index.d.ts",
+      "default": "./dist/components/context-menu/index.js"
     }
   },
   "files": [
