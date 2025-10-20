@@ -72,6 +72,8 @@ export {
   ToolbarToggleItemElement,
 } from './components/toolbar/index.js';
 
+export { SeparatorElement } from './components/separator/index.js';
+
 // Utilities
 export {
   VisuallyHiddenElement,

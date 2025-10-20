@@ -46,6 +46,10 @@
     "./toolbar": {
       "types": "./dist/components/toolbar/index.d.ts",
       "default": "./dist/components/toolbar/index.js"
+    },
+    "./separator": {
+      "types": "./dist/components/separator/index.d.ts",
+      "default": "./dist/components/separator/index.js"
     }
   },
   "files": [
