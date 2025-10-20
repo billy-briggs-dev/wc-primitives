@@ -49,7 +49,7 @@ export class AlertDialogElement extends PrimitiveElement {
 
   override connectedCallback() {
     super.connectedCallback();
-    this.setAttribute('role', 'alertdialog');
+    // Don't set role on root - role should only be on content
   }
 
   override updated(changedProperties: PropertyValues) {
@@ -123,12 +123,12 @@ export class AlertDialogElement extends PrimitiveElement {
     // Focus management is handled by the alert-dialog-content component
     const content = this.querySelector('wc-alert-dialog-content');
     if (content) {
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         const focusable = content.querySelector('[autofocus]') || content;
         if (focusable && typeof (focusable as HTMLElement).focus === 'function') {
           (focusable as HTMLElement).focus();
         }
-      }, 0);
+      });
     }
   }
 

@@ -51,7 +51,7 @@ describe('AlertDialog Component', () => {
     expect(alertDialog.disabled).toBe(false);
   });
 
-  it('should set role to alertdialog', async () => {
+  it('should set role to alertdialog on content', async () => {
     container.innerHTML = `
       <wc-alert-dialog>
         <wc-alert-dialog-trigger>Delete</wc-alert-dialog-trigger>
@@ -66,10 +66,8 @@ describe('AlertDialog Component', () => {
 
     await new Promise(resolve => setTimeout(resolve, 100));
 
-    const alertDialog = container.querySelector('wc-alert-dialog');
     const content = container.querySelector('wc-alert-dialog-content');
 
-    expect(alertDialog?.getAttribute('role')).toBe('alertdialog');
     expect(content?.getAttribute('role')).toBe('alertdialog');
   });
 

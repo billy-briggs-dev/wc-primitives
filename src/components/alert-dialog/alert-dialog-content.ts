@@ -40,7 +40,10 @@ export class AlertDialogContentElement extends PrimitiveElement {
     this.setAttribute('aria-modal', 'true');
     this.setAttribute('tabindex', '-1');
 
-    this._updateAttributes();
+    // Defer attribute updates until after children are rendered
+    requestAnimationFrame(() => {
+      this._updateAttributes();
+    });
   }
 
   override updated(changedProperties: PropertyValues) {
