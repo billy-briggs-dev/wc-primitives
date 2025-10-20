@@ -46,6 +46,18 @@
     "./toolbar": {
       "types": "./dist/components/toolbar/index.d.ts",
       "default": "./dist/components/toolbar/index.js"
+    },
+    "./aspect-ratio": {
+      "types": "./dist/components/aspect-ratio/index.d.ts",
+      "default": "./dist/components/aspect-ratio/index.js"
+    },
+    "./avatar": {
+      "types": "./dist/components/avatar/index.d.ts",
+      "default": "./dist/components/avatar/index.js"
+    },
+    "./checkbox": {
+      "types": "./dist/components/checkbox/index.d.ts",
+      "default": "./dist/components/checkbox/index.js"
     }
   },
   "files": [
