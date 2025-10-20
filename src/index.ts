@@ -36,3 +36,11 @@ export {
 } from './components/tabs/index.js';
 
 export { ToggleElement } from './components/toggle/index.js';
+
+export {
+  ToolbarElement,
+  ToolbarButtonElement,
+  ToolbarSeparatorElement,
+  ToolbarToggleGroupElement,
+  ToolbarToggleItemElement,
+} from './components/toolbar/index.js';
