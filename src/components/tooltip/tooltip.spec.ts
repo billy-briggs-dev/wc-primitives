@@ -36,7 +36,6 @@ describe('Tooltip Component', () => {
     expect(tooltip.open).toBe(false);
     expect(tooltip.disabled).toBe(false);
     expect(tooltip.delayDuration).toBe(700);
-    expect(tooltip.skipDelayDuration).toBe(300);
   });
 
   it('should set aria attributes', async () => {

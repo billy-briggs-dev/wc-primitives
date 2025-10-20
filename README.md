@@ -151,7 +151,6 @@ A popup that displays information related to an element when the element receive
 - `open`: `boolean` - The controlled open state of the tooltip
 - `disabled`: `boolean` - Disable the tooltip
 - `delayDuration`: `number` - The delay in milliseconds before showing the tooltip (default: 700)
-- `skipDelayDuration`: `number` - The delay when moving between tooltips (default: 300)
 
 **Events**
 - `open-change` - Fires when the open state changes

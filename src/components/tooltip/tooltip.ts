@@ -39,12 +39,6 @@ export class TooltipElement extends PrimitiveElement {
   @property({ type: Number })
   delayDuration = 700;
 
-  /**
-   * Whether to skip the delay when moving between tooltips.
-   */
-  @property({ type: Boolean })
-  skipDelayDuration = 300;
-
   private _openTimeout: ReturnType<typeof setTimeout> | null = null;
   private _closeTimeout: ReturnType<typeof setTimeout> | null = null;
 
