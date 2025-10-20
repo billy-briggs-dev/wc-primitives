@@ -114,6 +114,29 @@ A modal dialog that overlays content and traps focus within it.
 **Events**
 - `open-change` - Fires when the open state changes
 
+### Alert Dialog
+
+A modal dialog that interrupts the user with important content and expects a response. Unlike regular dialogs, alert dialogs cannot be dismissed by clicking outside or pressing Escape, requiring explicit user action.
+
+#### API Reference
+
+**wc-alert-dialog**
+- `open`: `boolean` - The controlled open state of the alert dialog
+- `disabled`: `boolean` - Disable the alert dialog
+
+**Events**
+- `open-change` - Fires when the open state changes
+
+**Components**
+- `wc-alert-dialog-trigger` - Button that opens the alert dialog
+- `wc-alert-dialog-portal` - Portal for rendering overlay and content
+- `wc-alert-dialog-overlay` - Backdrop layer (clicking does not close)
+- `wc-alert-dialog-content` - Content container with focus trap
+- `wc-alert-dialog-title` - Title element (used for aria-labelledby)
+- `wc-alert-dialog-description` - Description element (used for aria-describedby)
+- `wc-alert-dialog-action` - Primary action button (e.g., "Delete", "Confirm")
+- `wc-alert-dialog-cancel` - Cancel button
+
 ### Tabs
 
 A set of layered sections of content (tab panels) that are displayed one at a time.
