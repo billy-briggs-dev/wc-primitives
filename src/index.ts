@@ -36,3 +36,9 @@ export {
 } from './components/tabs/index.js';
 
 export { ToggleElement } from './components/toggle/index.js';
+
+export {
+  TooltipElement,
+  TooltipTriggerElement,
+  TooltipContentElement,
+} from './components/tooltip/index.js';
