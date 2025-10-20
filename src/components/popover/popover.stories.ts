@@ -152,7 +152,6 @@ const popoverStyles = html`
     /* Demo page styles */
     .demo-container {
       padding: 2rem;
-      min-height: 400px;
       display: flex;
       align-items: center;
       justify-content: center;
