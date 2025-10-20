@@ -5,6 +5,98 @@ import './accordion-item.js';
 import './accordion-trigger.js';
 import './accordion-content.js';
 
+// Shared styles for all accordion stories
+const accordionStyles = html`
+  <style>
+    wc-accordion {
+      display: block;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      overflow: hidden;
+      max-width: 600px;
+    }
+
+    wc-accordion-item {
+      display: block;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    wc-accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    wc-accordion-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: white;
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    wc-accordion-trigger:hover {
+      background-color: #f9f9f9;
+    }
+
+    wc-accordion-trigger[data-state='open'] {
+      background-color: #f9f9f9;
+    }
+
+    wc-accordion-trigger:focus {
+      outline: 2px solid #0066cc;
+      outline-offset: -2px;
+    }
+
+    wc-accordion-trigger[data-disabled] {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    wc-accordion-trigger::after {
+      content: '▼';
+      font-size: 0.75rem;
+      transition: transform 0.2s;
+    }
+
+    wc-accordion-trigger[data-state='open']::after {
+      transform: rotate(180deg);
+    }
+
+    wc-accordion-content {
+      display: block;
+      padding: 0 1.25rem 1rem 1.25rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    wc-accordion-content[data-state='closed'] {
+      display: none;
+    }
+
+    wc-accordion-content[data-state='open'] {
+      animation: slideDown 0.2s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+`;
+
 /**
  * A vertically stacked set of interactive headings that each reveal an associated section of content.
  * 
@@ -15,94 +107,7 @@ const meta: Meta = {
   title: 'Components/Accordion',
   tags: ['autodocs'],
   render: (args) => html`
-    <style>
-      wc-accordion {
-        display: block;
-        border: 1px solid #e5e5e5;
-        border-radius: 6px;
-        overflow: hidden;
-        max-width: 600px;
-      }
-
-      wc-accordion-item {
-        display: block;
-        border-bottom: 1px solid #e5e5e5;
-      }
-
-      wc-accordion-item:last-child {
-        border-bottom: none;
-      }
-
-      wc-accordion-trigger {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding: 1rem 1.25rem;
-        background: white;
-        border: none;
-        text-align: left;
-        font-size: 1rem;
-        font-weight: 500;
-        color: #333;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-
-      wc-accordion-trigger:hover {
-        background-color: #f9f9f9;
-      }
-
-      wc-accordion-trigger[data-state='open'] {
-        background-color: #f9f9f9;
-      }
-
-      wc-accordion-trigger:focus {
-        outline: 2px solid #0066cc;
-        outline-offset: -2px;
-      }
-
-      wc-accordion-trigger[data-disabled] {
-        cursor: not-allowed;
-        opacity: 0.5;
-      }
-
-      wc-accordion-trigger::after {
-        content: '▼';
-        font-size: 0.75rem;
-        transition: transform 0.2s;
-      }
-
-      wc-accordion-trigger[data-state='open']::after {
-        transform: rotate(180deg);
-      }
-
-      wc-accordion-content {
-        display: block;
-        padding: 0 1.25rem 1rem 1.25rem;
-        color: #666;
-        line-height: 1.6;
-      }
-
-      wc-accordion-content[data-state='closed'] {
-        display: none;
-      }
-
-      wc-accordion-content[data-state='open'] {
-        animation: slideDown 0.2s ease-out;
-      }
-
-      @keyframes slideDown {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
+    ${accordionStyles}
     <wc-accordion 
       type="${args.type || 'single'}"
       ?collapsible="${args.collapsible}"
@@ -250,89 +255,7 @@ export const WithEventListener: Story = {
     }, 0);
     
     return html`
-      <style>
-        wc-accordion {
-          display: block;
-          border: 1px solid #e5e5e5;
-          border-radius: 6px;
-          overflow: hidden;
-          max-width: 600px;
-        }
-
-        wc-accordion-item {
-          display: block;
-          border-bottom: 1px solid #e5e5e5;
-        }
-
-        wc-accordion-item:last-child {
-          border-bottom: none;
-        }
-
-        wc-accordion-trigger {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          padding: 1rem 1.25rem;
-          background: white;
-          border: none;
-          text-align: left;
-          font-size: 1rem;
-          font-weight: 500;
-          color: #333;
-          cursor: pointer;
-          transition: background-color 0.2s;
-        }
-
-        wc-accordion-trigger:hover {
-          background-color: #f9f9f9;
-        }
-
-        wc-accordion-trigger[data-state='open'] {
-          background-color: #f9f9f9;
-        }
-
-        wc-accordion-trigger:focus {
-          outline: 2px solid #0066cc;
-          outline-offset: -2px;
-        }
-
-        wc-accordion-trigger::after {
-          content: '▼';
-          font-size: 0.75rem;
-          transition: transform 0.2s;
-        }
-
-        wc-accordion-trigger[data-state='open']::after {
-          transform: rotate(180deg);
-        }
-
-        wc-accordion-content {
-          display: block;
-          padding: 0 1.25rem 1rem 1.25rem;
-          color: #666;
-          line-height: 1.6;
-        }
-
-        wc-accordion-content[data-state='closed'] {
-          display: none;
-        }
-
-        wc-accordion-content[data-state='open'] {
-          animation: slideDown 0.2s ease-out;
-        }
-
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      </style>
+      ${accordionStyles}
       <p><strong>Note:</strong> Open the browser console to see value-change events.</p>
       <wc-accordion 
         type="${args.type}"
