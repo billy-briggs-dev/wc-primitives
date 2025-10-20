@@ -45,3 +45,22 @@ export {
   PopoverContentElement,
   PopoverCloseElement,
 } from './components/popover/index.js';
+
+export {
+  ToolbarElement,
+  ToolbarButtonElement,
+  ToolbarSeparatorElement,
+  ToolbarToggleGroupElement,
+  ToolbarToggleItemElement,
+} from './components/toolbar/index.js';
+
+// Utilities
+export {
+  VisuallyHiddenElement,
+  SlotElement,
+  PortalElement,
+  AccessibleIconElement,
+  DirectionProviderElement,
+  getDirection,
+  type Direction,
+} from './utilities/index.js';

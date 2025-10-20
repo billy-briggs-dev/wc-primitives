@@ -100,6 +100,90 @@ A vertically stacked set of interactive headings that each reveal an associated 
 **Events**
 - `value-change` - Fires when open items change
 
+## Utilities
+
+Radix-style utility components for building accessible UI primitives.
+
+### Visually Hidden
+
+Hides content visually while keeping it accessible to screen readers.
+
+```html
+<button>
+  <span>Close</span>
+  <wc-visually-hidden>dialog</wc-visually-hidden>
+</button>
+```
+
+**Use Cases:**
+- Adding context for screen readers
+- Skip links
+- Accessible labels without visual clutter
+
+### Accessible Icon
+
+Makes icon-only buttons accessible by providing labels for screen readers.
+
+```html
+<button>
+  <wc-accessible-icon label="Close dialog">
+    <svg>...</svg>
+  </wc-accessible-icon>
+</button>
+```
+
+**Features:**
+- Icons marked as `aria-hidden="true"`
+- Label is visually hidden but accessible
+- Proper focus management
+
+### Direction Provider
+
+Provides text direction context (LTR/RTL) to descendant components.
+
+```html
+<wc-direction-provider dir="rtl">
+  <div>محتوى باللغة العربية</div>
+</wc-direction-provider>
+```
+
+**API:**
+- `dir`: `'ltr' | 'rtl'` - Text direction
+- Helper function `getDirection(element)` to query direction from any element
+
+### Portal
+
+Renders content in a different part of the DOM tree.
+
+```html
+<wc-portal container="#portal-root">
+  <div>Content rendered elsewhere</div>
+</wc-portal>
+```
+
+**Use Cases:**
+- Modals that need to escape overflow containers
+- Popovers and tooltips
+- Full-screen overlays
+
+**API:**
+- `container`: CSS selector for portal destination (defaults to `document.body`)
+- `disabled`: Render content in place when true
+
+### Slot
+
+Merges props onto its immediate child element.
+
+```html
+<wc-slot asChild data-custom="value" class="merged-class">
+  <button>Custom button</button>
+</wc-slot>
+```
+
+**API:**
+- `asChild`: Enable prop merging when true
+- Merges data attributes, ARIA attributes, and classes to child
+
 ### Dialog
 
 A modal dialog that overlays content and traps focus within it.
@@ -158,6 +242,40 @@ A non-modal dialog that floats near a trigger element, allowing interaction with
 
 **Events**
 - `open-change` - Fires when the open state changes
+
+
+### Toolbar
+
+A container for grouping a set of controls, such as buttons, toggle buttons, or dropdown menus.
+
+#### API Reference
+
+**wc-toolbar**
+- `orientation`: `'horizontal' | 'vertical'` - The orientation of the toolbar
+- `disabled`: `boolean` - Disable the entire toolbar
+- `roving-tabindex`: `boolean` - Enable roving tab index for keyboard navigation (default: true)
+
+**wc-toolbar-button**
+- A button element within a toolbar
+- `disabled`: `boolean` - Disable the button
+
+**wc-toolbar-separator**
+- A visual separator between toolbar items
+- `orientation`: `'horizontal' | 'vertical'` - The orientation of the separator
+
+**wc-toolbar-toggle-group**
+- A set of toggle buttons within a toolbar
+- `type`: `'single' | 'multiple'` - Whether one or multiple items can be active
+- `value`: `string` - The controlled value(s) of the toggle group
+- `disabled`: `boolean` - Disable the toggle group
+
+**wc-toolbar-toggle-item**
+- An individual toggle button within a toolbar toggle group
+- `value`: `string` - The value of this toggle item
+- `disabled`: `boolean` - Disable the toggle item
+
+**Events**
+- `value-change` - Fires when the active toggle item(s) change (on wc-toolbar-toggle-group)
 
 ## Styling
 
