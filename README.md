@@ -2,6 +2,8 @@
 
 A collection of headless Web Component Primitives built with Lit 3, inspired by Radix UI. Framework-agnostic, accessible, and fully customizable.
 
+📚 **[View Documentation & Examples](https://billy-briggs-dev.github.io/wc-primitives/)**
+
 ## Features
 
 - 🎨 **Headless** - No default styles, complete styling control
