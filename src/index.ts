@@ -16,3 +16,23 @@ export {
   AccordionTriggerElement,
   AccordionContentElement,
 } from './components/accordion/index.js';
+
+export {
+  DialogElement,
+  DialogTriggerElement,
+  DialogPortalElement,
+  DialogOverlayElement,
+  DialogContentElement,
+  DialogTitleElement,
+  DialogDescriptionElement,
+  DialogCloseElement,
+} from './components/dialog/index.js';
+
+export {
+  TabsElement,
+  TabsListElement,
+  TabsTriggerElement,
+  TabsContentElement,
+} from './components/tabs/index.js';
+
+export { ToggleElement } from './components/toggle/index.js';
