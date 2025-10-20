@@ -36,3 +36,14 @@ export {
 } from './components/tabs/index.js';
 
 export { ToggleElement } from './components/toggle/index.js';
+
+// Utilities
+export {
+  VisuallyHiddenElement,
+  SlotElement,
+  PortalElement,
+  AccessibleIconElement,
+  DirectionProviderElement,
+  getDirection,
+  type Direction,
+} from './utilities/index.js';
