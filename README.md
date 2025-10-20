@@ -248,6 +248,17 @@ A two-state button that can be toggled on or off.
 **Events**
 - `pressed-change` - Fires when the pressed state changes
 
+### Tooltip
+
+A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+
+#### API Reference
+
+**wc-tooltip**
+- `open`: `boolean` - The controlled open state of the tooltip
+- `disabled`: `boolean` - Disable the tooltip
+- `delayDuration`: `number` - The delay in milliseconds before showing the tooltip (default: 700)
+
 ### Popover
 
 A non-modal dialog that floats near a trigger element, allowing interaction with the rest of the page.
