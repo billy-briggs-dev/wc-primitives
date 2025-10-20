@@ -60,6 +60,42 @@ A complete, production-ready accordion component with:
   - `wc-accordion-trigger` - Interactive trigger button
   - `wc-accordion-content` - Collapsible content area
 
+### Utilities
+
+Radix-style utility components for building accessible UI primitives:
+
+#### Visually Hidden
+- Hides content visually while keeping it accessible to screen readers
+- Uses modern CSS techniques (clip-path instead of deprecated clip)
+- Perfect for adding context for assistive technologies
+
+#### Accessible Icon
+- Makes icon-only buttons accessible
+- Icons marked as `aria-hidden="true"` and `focusable="false"`
+- Provides visually hidden labels for screen readers
+- Optimized to only setup once on first render
+
+#### Direction Provider
+- Provides text direction context (LTR/RTL) to descendant components
+- Useful for internationalization and right-to-left language support
+- Includes helper function `getDirection()` for querying direction
+- Uses Lit's `reflect: true` for efficient attribute syncing
+
+#### Portal
+- Renders content in a different part of the DOM tree
+- Moves actual nodes (not clones) to maintain event handlers and state
+- Supports custom container via CSS selector
+- Can be disabled to render content in place
+- Properly restores content when disabled or disconnected
+
+#### Slot
+- Merges props from parent to immediate child element
+- Works with light DOM using MutationObserver
+- Merges data attributes, ARIA attributes, and class names
+- Useful for creating polymorphic components
+
+**Test Coverage**: 20 comprehensive tests covering all utilities
+
 ## Project Structure
 
 ```
@@ -67,16 +103,25 @@ wc-primitives/
 ├── src/
 │   ├── index.ts                          # Main entry point
 │   ├── primitive-element.ts              # Base class for all primitives
-│   └── components/
-│       └── accordion/
-│           ├── index.ts                  # Exports
-│           ├── accordion.ts              # Root component
-│           ├── accordion-item.ts         # Item component
-│           ├── accordion-trigger.ts      # Trigger component
-│           ├── accordion-content.ts      # Content component
-│           └── accordion.spec.ts         # Tests (7 passing)
+│   ├── components/
+│   │   └── accordion/
+│   │       ├── index.ts                  # Exports
+│   │       ├── accordion.ts              # Root component
+│   │       ├── accordion-item.ts         # Item component
+│   │       ├── accordion-trigger.ts      # Trigger component
+│   │       ├── accordion-content.ts      # Content component
+│   │       └── accordion.spec.ts         # Tests (7 passing)
+│   └── utilities/
+│       ├── index.ts                      # Exports
+│       ├── visually-hidden.ts            # Visually Hidden utility
+│       ├── accessible-icon.ts            # Accessible Icon utility
+│       ├── direction-provider.ts         # Direction Provider utility
+│       ├── portal.ts                     # Portal utility
+│       ├── slot.ts                       # Slot utility
+│       └── utilities.spec.ts             # Tests (20 passing)
 ├── demo/
-│   └── index.html                        # Interactive demo
+│   ├── index.html                        # Accordion demo
+│   └── utilities.html                    # Utilities demo
 ├── dist/                                 # Build output
 ├── package.json                          # Dependencies & scripts
 ├── tsconfig.json                         # TypeScript config
@@ -102,7 +147,7 @@ wc-primitives/
 ## Testing
 
 - **Framework**: Vitest with jsdom/happy-dom
-- **Coverage**: 7 comprehensive tests
+- **Coverage**: 27 comprehensive tests (7 accordion + 20 utilities)
 - **Areas tested**:
   - Component rendering
   - Single mode behavior
@@ -111,6 +156,12 @@ wc-primitives/
   - Disabled state
   - ARIA attributes
   - Default properties
+  - Utilities functionality:
+    - Visually hidden styles
+    - Accessible icon labels and aria attributes
+    - Direction provider and getDirection helper
+    - Portal rendering and container targeting
+    - Slot prop merging
 
 All tests passing ✅
 
@@ -211,6 +262,8 @@ Each would follow the same pattern:
 - Event-driven
 - Framework agnostic
 
+The utilities (Visually Hidden, Accessible Icon, Portal, Direction Provider, and Slot) provide reusable building blocks for creating these future components.
+
 ## Dependencies
 
 ### Production
@@ -228,6 +281,7 @@ Each would follow the same pattern:
 Total package size (minified + gzipped):
 - Core: ~1KB
 - Accordion: ~4KB
+- Utilities: ~4KB
 - Very lightweight! 🪶
 
 ## Security Summary
@@ -248,8 +302,11 @@ All requirements from the problem statement have been successfully met:
 ✅ Modern tooling (no webpack/jest)
 ✅ Lightweight state management
 ✅ Production-ready example (Accordion)
-✅ Comprehensive testing
+✅ Radix-style utilities (Visually Hidden, Accessible Icon, Portal, Direction Provider, Slot)
+✅ Comprehensive testing (27 tests)
 ✅ Full documentation
-✅ Interactive demo
+✅ Interactive demos
+✅ Code review passed
+✅ Security scan passed (0 vulnerabilities)
 
 The library is ready for use and future expansion!
