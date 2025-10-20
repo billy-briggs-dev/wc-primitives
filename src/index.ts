@@ -29,6 +29,18 @@ export {
 } from './components/dialog/index.js';
 
 export {
+  AlertDialogElement,
+  AlertDialogTriggerElement,
+  AlertDialogPortalElement,
+  AlertDialogOverlayElement,
+  AlertDialogContentElement,
+  AlertDialogTitleElement,
+  AlertDialogDescriptionElement,
+  AlertDialogActionElement,
+  AlertDialogCancelElement,
+} from './components/alert-dialog/index.js';
+
+export {
   TabsElement,
   TabsListElement,
   TabsTriggerElement,
@@ -42,3 +54,31 @@ export {
   TooltipTriggerElement,
   TooltipContentElement,
 } from './components/tooltip/index.js';
+
+export {
+  PopoverElement,
+  PopoverTriggerElement,
+  PopoverAnchorElement,
+  PopoverPortalElement,
+  PopoverContentElement,
+  PopoverCloseElement,
+} from './components/popover/index.js';
+
+export {
+  ToolbarElement,
+  ToolbarButtonElement,
+  ToolbarSeparatorElement,
+  ToolbarToggleGroupElement,
+  ToolbarToggleItemElement,
+} from './components/toolbar/index.js';
+
+// Utilities
+export {
+  VisuallyHiddenElement,
+  SlotElement,
+  PortalElement,
+  AccessibleIconElement,
+  DirectionProviderElement,
+  getDirection,
+  type Direction,
+} from './utilities/index.js';

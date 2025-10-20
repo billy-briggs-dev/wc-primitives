@@ -15,9 +15,17 @@
       "types": "./dist/components/accordion/index.d.ts",
       "default": "./dist/components/accordion/index.js"
     },
+    "./utilities": {
+      "types": "./dist/utilities/index.d.ts",
+      "default": "./dist/utilities/index.js"
+    },
     "./dialog": {
       "types": "./dist/components/dialog/index.d.ts",
       "default": "./dist/components/dialog/index.js"
+    },
+    "./alert-dialog": {
+      "types": "./dist/components/alert-dialog/index.d.ts",
+      "default": "./dist/components/alert-dialog/index.js"
     },
     "./tabs": {
       "types": "./dist/components/tabs/index.d.ts",
@@ -30,6 +38,14 @@
     "./tooltip": {
       "types": "./dist/components/tooltip/index.d.ts",
       "default": "./dist/components/tooltip/index.js"
+    },
+    "./popover": {
+      "types": "./dist/components/popover/index.d.ts",
+      "default": "./dist/components/popover/index.js"
+    },
+    "./toolbar": {
+      "types": "./dist/components/toolbar/index.d.ts",
+      "default": "./dist/components/toolbar/index.js"
     }
   },
   "files": [
