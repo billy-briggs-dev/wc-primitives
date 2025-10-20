@@ -100,6 +100,90 @@ A vertically stacked set of interactive headings that each reveal an associated 
 **Events**
 - `value-change` - Fires when open items change
 
+## Utilities
+
+Radix-style utility components for building accessible UI primitives.
+
+### Visually Hidden
+
+Hides content visually while keeping it accessible to screen readers.
+
+```html
+<button>
+  <span>Close</span>
+  <wc-visually-hidden>dialog</wc-visually-hidden>
+</button>
+```
+
+**Use Cases:**
+- Adding context for screen readers
+- Skip links
+- Accessible labels without visual clutter
+
+### Accessible Icon
+
+Makes icon-only buttons accessible by providing labels for screen readers.
+
+```html
+<button>
+  <wc-accessible-icon label="Close dialog">
+    <svg>...</svg>
+  </wc-accessible-icon>
+</button>
+```
+
+**Features:**
+- Icons marked as `aria-hidden="true"`
+- Label is visually hidden but accessible
+- Proper focus management
+
+### Direction Provider
+
+Provides text direction context (LTR/RTL) to descendant components.
+
+```html
+<wc-direction-provider dir="rtl">
+  <div>محتوى باللغة العربية</div>
+</wc-direction-provider>
+```
+
+**API:**
+- `dir`: `'ltr' | 'rtl'` - Text direction
+- Helper function `getDirection(element)` to query direction from any element
+
+### Portal
+
+Renders content in a different part of the DOM tree.
+
+```html
+<wc-portal container="#portal-root">
+  <div>Content rendered elsewhere</div>
+</wc-portal>
+```
+
+**Use Cases:**
+- Modals that need to escape overflow containers
+- Popovers and tooltips
+- Full-screen overlays
+
+**API:**
+- `container`: CSS selector for portal destination (defaults to `document.body`)
+- `disabled`: Render content in place when true
+
+### Slot
+
+Merges props onto its immediate child element.
+
+```html
+<wc-slot asChild data-custom="value" class="merged-class">
+  <button>Custom button</button>
+</wc-slot>
+```
+
+**API:**
+- `asChild`: Enable prop merging when true
+- Merges data attributes, ARIA attributes, and classes to child
+
 ### Dialog
 
 A modal dialog that overlays content and traps focus within it.

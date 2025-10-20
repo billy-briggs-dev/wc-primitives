@@ -44,3 +44,14 @@ export {
   ToolbarToggleGroupElement,
   ToolbarToggleItemElement,
 } from './components/toolbar/index.js';
+
+// Utilities
+export {
+  VisuallyHiddenElement,
+  SlotElement,
+  PortalElement,
+  AccessibleIconElement,
+  DirectionProviderElement,
+  getDirection,
+  type Direction,
+} from './utilities/index.js';

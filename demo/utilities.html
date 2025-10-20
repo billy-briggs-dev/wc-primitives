@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WC Primitives Demo - Utilities</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: #f5f5f5;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 2rem;
+      }
+
+      .demo-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #333;
+        font-size: 1.25rem;
+        border-bottom: 2px solid #e5e5e5;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .demo-example {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        border: 2px dashed #e0e0e0;
+        border-radius: 4px;
+        background: #fafafa;
+      }
+
+      .code-block {
+        background: #f5f5f5;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        margin-top: 1rem;
+        border: 1px solid #e0e0e0;
+      }
+
+      code {
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+      }
+
+      .info-box {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 4px;
+      }
+
+      .info-box strong {
+        color: #0066cc;
+      }
+
+      /* Demo-specific styles */
+      button {
+        padding: 0.5rem 1rem;
+        border: 1px solid #0066cc;
+        background: #0066cc;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.2s;
+      }
+
+      button:hover {
+        background: #0052a3;
+      }
+
+      button:focus {
+        outline: 2px solid #0066cc;
+        outline-offset: 2px;
+      }
+
+      .icon-button {
+        padding: 0.5rem;
+        min-width: 40px;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .rtl-text {
+        text-align: right;
+      }
+
+      .portal-target {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: white;
+        padding: 1rem;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 2px solid #0066cc;
+      }
+
+      .screen-reader-output {
+        background: #fff3cd;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 4px;
+        border-left: 4px solid #ffc107;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>WC Primitives Utilities Demo</h1>
+    <p class="subtitle">Radix-style utility components for building accessible UI</p>
+
+    <div class="demo-section">
+      <h2>1. Visually Hidden</h2>
+      <p>
+        Hides content visually while keeping it accessible to screen readers. 
+        Perfect for adding context for assistive technologies.
+      </p>
+      
+      <div class="demo-example">
+        <button>
+          <span>Close</span>
+          <wc-visually-hidden>dialog</wc-visually-hidden>
+        </button>
+      </div>
+
+      <div class="info-box">
+        <strong>Screen reader reads:</strong> "Close dialog" button
+        <br />
+        <strong>Visually shows:</strong> "Close" button
+      </div>
+
+      <div class="code-block">
+        <code>&lt;button&gt;<br/>
+  &lt;span&gt;Close&lt;/span&gt;<br/>
+  &lt;wc-visually-hidden&gt;dialog&lt;/wc-visually-hidden&gt;<br/>
+&lt;/button&gt;</code>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>2. Accessible Icon</h2>
+      <p>
+        Makes icon-only buttons accessible by providing a label for screen readers.
+        The icon is marked as decorative, and the label is visually hidden.
+      </p>
+      
+      <div class="demo-example">
+        <button class="icon-button">
+          <wc-accessible-icon label="Close dialog">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </wc-accessible-icon>
+        </button>
+
+        <button class="icon-button">
+          <wc-accessible-icon label="Add item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+          </wc-accessible-icon>
+        </button>
+
+        <button class="icon-button">
+          <wc-accessible-icon label="Save changes">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </wc-accessible-icon>
+        </button>
+      </div>
+
+      <div class="info-box">
+        <strong>Accessibility:</strong> Icons are hidden from screen readers (aria-hidden="true"), 
+        but the label provides context. Hover over buttons to see their accessible names.
+      </div>
+
+      <div class="code-block">
+        <code>&lt;button&gt;<br/>
+  &lt;wc-accessible-icon label="Close dialog"&gt;<br/>
+    &lt;svg&gt;...&lt;/svg&gt;<br/>
+  &lt;/wc-accessible-icon&gt;<br/>
+&lt;/button&gt;</code>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>3. Direction Provider</h2>
+      <p>
+        Provides text direction context (LTR/RTL) to descendant components.
+        Useful for internationalization and right-to-left language support.
+      </p>
+      
+      <div class="demo-example">
+        <h3 style="margin-top: 0;">Left-to-Right (LTR)</h3>
+        <wc-direction-provider dir="ltr">
+          <p>This text flows from left to right (English, French, Spanish, etc.)</p>
+        </wc-direction-provider>
+
+        <h3>Right-to-Left (RTL)</h3>
+        <wc-direction-provider dir="rtl">
+          <p class="rtl-text">هذا النص يتدفق من اليمين إلى اليسار (العربية، العبرية، إلخ)</p>
+          <p class="rtl-text">This text also flows from right to left</p>
+        </wc-direction-provider>
+      </div>
+
+      <div class="info-box">
+        <strong>Usage:</strong> Child components can query the direction using the 
+        <code>getDirection()</code> helper function to adjust their behavior.
+      </div>
+
+      <div class="code-block">
+        <code>&lt;wc-direction-provider dir="rtl"&gt;<br/>
+  &lt;p&gt;Content with RTL direction&lt;/p&gt;<br/>
+&lt;/wc-direction-provider&gt;</code>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>4. Portal</h2>
+      <p>
+        Renders content in a different part of the DOM tree. Useful for modals, 
+        popovers, and tooltips that need to break out of their container.
+      </p>
+      
+      <div class="demo-example">
+        <button id="show-portal-btn">Show Portal Content (Top Right)</button>
+        <button id="hide-portal-btn" style="margin-left: 1rem;">Hide Portal Content</button>
+        
+        <div id="portal-target"></div>
+        
+        <wc-portal id="demo-portal" container="#portal-target">
+          <div class="portal-target">
+            <strong>🎯 Portaled Content!</strong>
+            <p style="margin: 0.5rem 0 0;">
+              This content is rendered in the top-right corner, 
+              even though the portal component is inside this demo section.
+            </p>
+          </div>
+        </wc-portal>
+      </div>
+
+      <div class="info-box">
+        <strong>Note:</strong> The portal content appears in a different location 
+        than where it's defined in the HTML. Try inspecting the DOM!
+      </div>
+
+      <div class="code-block">
+        <code>&lt;wc-portal container="#portal-root"&gt;<br/>
+  &lt;div&gt;Content rendered elsewhere&lt;/div&gt;<br/>
+&lt;/wc-portal&gt;</code>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>5. Slot</h2>
+      <p>
+        Merges props onto its immediate child element. Useful for creating 
+        components that accept custom elements while passing props to them.
+      </p>
+      
+      <div class="demo-example">
+        <wc-slot asChild data-custom="value" class="merged-class">
+          <button>Button with merged props</button>
+        </wc-slot>
+      </div>
+
+      <div class="info-box">
+        <strong>Usage:</strong> When <code>asChild</code> is true, data attributes, 
+        ARIA attributes, and classes are merged onto the child element.
+      </div>
+
+      <div class="code-block">
+        <code>&lt;wc-slot asChild data-custom="value"&gt;<br/>
+  &lt;button&gt;Custom button&lt;/button&gt;<br/>
+&lt;/wc-slot&gt;</code>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top: 2rem;">
+      <strong>💡 Pro Tip:</strong> All these utilities are headless and work with any styling approach. 
+      They provide behavior and accessibility without imposing design constraints.
+    </div>
+
+    <script type="module">
+      // Import all utility components
+      import '../src/utilities/visually-hidden.ts';
+      import '../src/utilities/accessible-icon.ts';
+      import '../src/utilities/direction-provider.ts';
+      import '../src/utilities/portal.ts';
+      import '../src/utilities/slot.ts';
+
+      // Portal demo controls
+      const portalElement = document.getElementById('demo-portal');
+      const showBtn = document.getElementById('show-portal-btn');
+      const hideBtn = document.getElementById('hide-portal-btn');
+
+      // Initially hide the portal
+      portalElement.disabled = true;
+
+      showBtn.addEventListener('click', () => {
+        portalElement.disabled = false;
+        portalElement.requestUpdate();
+      });
+
+      hideBtn.addEventListener('click', () => {
+        portalElement.disabled = true;
+        portalElement.requestUpdate();
+      });
+
+      // Log accessible icon labels on hover
+      document.querySelectorAll('wc-accessible-icon').forEach(icon => {
+        const button = icon.closest('button');
+        if (button) {
+          button.addEventListener('mouseenter', () => {
+            console.log('Button label:', icon.label);
+          });
+        }
+      });
+
+      // Log direction changes
+      document.querySelectorAll('wc-direction-provider').forEach(provider => {
+        provider.addEventListener('direction-change', (e) => {
+          console.log('Direction changed:', e.detail);
+        });
+      });
+    </script>
+  </body>
+</html>
