@@ -29,6 +29,18 @@ export {
 } from './components/dialog/index.js';
 
 export {
+  AlertDialogElement,
+  AlertDialogTriggerElement,
+  AlertDialogPortalElement,
+  AlertDialogOverlayElement,
+  AlertDialogContentElement,
+  AlertDialogTitleElement,
+  AlertDialogDescriptionElement,
+  AlertDialogActionElement,
+  AlertDialogCancelElement,
+} from './components/alert-dialog/index.js';
+
+export {
   TabsElement,
   TabsListElement,
   TabsTriggerElement,

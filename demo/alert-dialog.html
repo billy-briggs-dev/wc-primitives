@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WC Primitives Demo - Alert Dialog</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: #f5f5f5;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 2rem;
+      }
+
+      .demo-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: #333;
+        font-size: 1.25rem;
+      }
+
+      /* Alert Dialog Styles */
+      wc-alert-dialog-portal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+      }
+
+      wc-alert-dialog-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.2s ease-out;
+      }
+
+      wc-alert-dialog-overlay[data-state='closed'] {
+        animation: fadeOut 0.2s ease-out;
+      }
+
+      wc-alert-dialog-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 10px 38px -10px rgba(0, 0, 0, 0.35),
+          0 10px 20px -15px rgba(0, 0, 0, 0.2);
+        max-width: 450px;
+        width: 90vw;
+        max-height: 85vh;
+        overflow-y: auto;
+        animation: contentShow 0.2s ease-out;
+      }
+
+      wc-alert-dialog-content[data-state='closed'] {
+        animation: contentHide 0.2s ease-out;
+      }
+
+      wc-alert-dialog-content:focus {
+        outline: none;
+      }
+
+      wc-alert-dialog-title {
+        display: block;
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      wc-alert-dialog-description {
+        display: block;
+        margin: 0 0 1.25rem 0;
+        font-size: 0.9375rem;
+        line-height: 1.5;
+        color: #666;
+      }
+
+      wc-alert-dialog-trigger,
+      wc-alert-dialog-action,
+      wc-alert-dialog-cancel {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.625rem 1rem;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        line-height: 1;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+      }
+
+      wc-alert-dialog-trigger {
+        background: #dc2626;
+        color: white;
+      }
+
+      wc-alert-dialog-trigger:hover {
+        background: #b91c1c;
+      }
+
+      wc-alert-dialog-trigger:focus {
+        outline: 2px solid #dc2626;
+        outline-offset: 2px;
+      }
+
+      wc-alert-dialog-action {
+        background: #dc2626;
+        color: white;
+      }
+
+      wc-alert-dialog-action:hover {
+        background: #b91c1c;
+      }
+
+      wc-alert-dialog-action:focus {
+        outline: 2px solid #dc2626;
+        outline-offset: 2px;
+      }
+
+      wc-alert-dialog-cancel {
+        background: #f3f4f6;
+        color: #333;
+      }
+
+      wc-alert-dialog-cancel:hover {
+        background: #e5e7eb;
+      }
+
+      wc-alert-dialog-cancel:focus {
+        outline: 2px solid #666;
+        outline-offset: 2px;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        justify-content: flex-end;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      @keyframes contentShow {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -48%) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      @keyframes contentHide {
+        from {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translate(-50%, -48%) scale(0.96);
+        }
+      }
+
+      .info-box {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 4px;
+      }
+
+      .info-box strong {
+        color: #0066cc;
+      }
+
+      .warning-box {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 4px;
+      }
+
+      .warning-box strong {
+        color: #d97706;
+      }
+
+      .event-log {
+        background: #f5f5f5;
+        padding: 1rem;
+        border-radius: 4px;
+        margin-top: 1rem;
+        min-height: 100px;
+        max-height: 200px;
+        overflow-y: auto;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+      }
+
+      .event-log-item {
+        padding: 0.25rem 0;
+        color: #666;
+      }
+
+      .event-log-empty {
+        color: #999;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>WC Primitives Demo - Alert Dialog</h1>
+    <p class="subtitle">Headless Web Component Primitives built with Lit 3</p>
+
+    <div class="demo-section">
+      <h2>Destructive Action Confirmation</h2>
+      <p>Alert dialogs require explicit user action and cannot be dismissed by clicking outside or pressing Escape.</p>
+      
+      <wc-alert-dialog id="delete-dialog">
+        <wc-alert-dialog-trigger>Delete Account</wc-alert-dialog-trigger>
+        <wc-alert-dialog-portal>
+          <wc-alert-dialog-overlay></wc-alert-dialog-overlay>
+          <wc-alert-dialog-content>
+            <wc-alert-dialog-title>Are you absolutely sure?</wc-alert-dialog-title>
+            <wc-alert-dialog-description>
+              This action cannot be undone. This will permanently delete your account
+              and remove your data from our servers.
+            </wc-alert-dialog-description>
+            <div class="button-group">
+              <wc-alert-dialog-cancel>Cancel</wc-alert-dialog-cancel>
+              <wc-alert-dialog-action>Yes, delete account</wc-alert-dialog-action>
+            </div>
+          </wc-alert-dialog-content>
+        </wc-alert-dialog-portal>
+      </wc-alert-dialog>
+
+      <div class="warning-box">
+        <strong>Try this:</strong> Open the dialog and try clicking outside or pressing Escape. 
+        Unlike regular dialogs, alert dialogs require you to explicitly click Cancel or the action button.
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>File Deletion</h2>
+      <p>A simpler confirmation for file deletion.</p>
+      
+      <wc-alert-dialog id="file-dialog">
+        <wc-alert-dialog-trigger>Delete File</wc-alert-dialog-trigger>
+        <wc-alert-dialog-portal>
+          <wc-alert-dialog-overlay></wc-alert-dialog-overlay>
+          <wc-alert-dialog-content>
+            <wc-alert-dialog-title>Delete "document.pdf"?</wc-alert-dialog-title>
+            <wc-alert-dialog-description>
+              This file will be permanently deleted. You won't be able to recover it.
+            </wc-alert-dialog-description>
+            <div class="button-group">
+              <wc-alert-dialog-cancel>Cancel</wc-alert-dialog-cancel>
+              <wc-alert-dialog-action>Delete File</wc-alert-dialog-action>
+            </div>
+          </wc-alert-dialog-content>
+        </wc-alert-dialog-portal>
+      </wc-alert-dialog>
+    </div>
+
+    <div class="demo-section">
+      <h2>Event Tracking</h2>
+      <p>Alert dialogs dispatch events that you can listen to.</p>
+      
+      <wc-alert-dialog id="event-dialog">
+        <wc-alert-dialog-trigger>Open with Events</wc-alert-dialog-trigger>
+        <wc-alert-dialog-portal>
+          <wc-alert-dialog-overlay></wc-alert-dialog-overlay>
+          <wc-alert-dialog-content>
+            <wc-alert-dialog-title>Event Tracking Demo</wc-alert-dialog-title>
+            <wc-alert-dialog-description>
+              When you cancel or confirm, events will be logged below.
+            </wc-alert-dialog-description>
+            <div class="button-group">
+              <wc-alert-dialog-cancel>Cancel</wc-alert-dialog-cancel>
+              <wc-alert-dialog-action>Confirm</wc-alert-dialog-action>
+            </div>
+          </wc-alert-dialog-content>
+        </wc-alert-dialog-portal>
+      </wc-alert-dialog>
+
+      <div class="event-log" id="event-log">
+        <div class="event-log-empty">No events yet. Open the dialog to see events.</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Key Difference from Dialog:</strong> Alert dialogs use <code>role="alertdialog"</code> 
+      and cannot be dismissed by clicking outside or pressing Escape. This ensures important 
+      confirmations are not accidentally dismissed. Users must explicitly choose an action.
+    </div>
+
+    <div class="info-box">
+      <strong>Note:</strong> All styling you see is applied by the demo page. 
+      The components themselves are headless and come with no default styles. 
+      You have complete control over the appearance!
+    </div>
+
+    <script type="module">
+      // Import all alert-dialog components
+      import '../src/components/alert-dialog/alert-dialog.ts';
+      import '../src/components/alert-dialog/alert-dialog-trigger.ts';
+      import '../src/components/alert-dialog/alert-dialog-portal.ts';
+      import '../src/components/alert-dialog/alert-dialog-overlay.ts';
+      import '../src/components/alert-dialog/alert-dialog-content.ts';
+      import '../src/components/alert-dialog/alert-dialog-title.ts';
+      import '../src/components/alert-dialog/alert-dialog-description.ts';
+      import '../src/components/alert-dialog/alert-dialog-action.ts';
+      import '../src/components/alert-dialog/alert-dialog-cancel.ts';
+
+      // Event logging
+      const eventLog = document.getElementById('event-log');
+      const eventDialog = document.getElementById('event-dialog');
+      const eventLogItems = [];
+
+      function logEvent(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const logItem = `[${timestamp}] ${message}`;
+        eventLogItems.push(logItem);
+        
+        if (eventLogItems.length > 10) {
+          eventLogItems.shift();
+        }
+        
+        eventLog.innerHTML = eventLogItems
+          .map(item => `<div class="event-log-item">${item}</div>`)
+          .join('');
+      }
+
+      // Listen to open-change events
+      eventDialog.addEventListener('open-change', (e) => {
+        logEvent(`Dialog ${e.detail.open ? 'opened' : 'closed'}`);
+      });
+
+      // Listen to button clicks
+      const eventCancel = eventDialog.querySelector('wc-alert-dialog-cancel');
+      const eventAction = eventDialog.querySelector('wc-alert-dialog-action');
+      
+      eventCancel.addEventListener('click', () => {
+        logEvent('User clicked Cancel');
+      });
+      
+      eventAction.addEventListener('click', () => {
+        logEvent('User clicked Confirm');
+      });
+
+      // Listen to all alert dialogs for console logging
+      const allDialogs = document.querySelectorAll('wc-alert-dialog');
+      allDialogs.forEach((dialog, index) => {
+        dialog.addEventListener('open-change', (e) => {
+          console.log(`Alert Dialog ${index + 1} state changed:`, e.detail);
+        });
+      });
+
+      // Simulate actions on other dialogs
+      const deleteDialog = document.getElementById('delete-dialog');
+      const fileDialog = document.getElementById('file-dialog');
+
+      deleteDialog.querySelector('wc-alert-dialog-action').addEventListener('click', () => {
+        console.log('Account deletion confirmed!');
+        alert('Account would be deleted (demo only)');
+      });
+
+      fileDialog.querySelector('wc-alert-dialog-action').addEventListener('click', () => {
+        console.log('File deletion confirmed!');
+        alert('File would be deleted (demo only)');
+      });
+    </script>
+  </body>
+</html>
