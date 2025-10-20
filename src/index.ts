@@ -37,6 +37,14 @@ export {
 
 export { ToggleElement } from './components/toggle/index.js';
 
+export {
+  ToolbarElement,
+  ToolbarButtonElement,
+  ToolbarSeparatorElement,
+  ToolbarToggleGroupElement,
+  ToolbarToggleItemElement,
+} from './components/toolbar/index.js';
+
 // Utilities
 export {
   VisuallyHiddenElement,

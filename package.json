@@ -30,6 +30,10 @@
     "./toggle": {
       "types": "./dist/components/toggle/index.d.ts",
       "default": "./dist/components/toggle/index.js"
+    },
+    "./toolbar": {
+      "types": "./dist/components/toolbar/index.d.ts",
+      "default": "./dist/components/toolbar/index.js"
     }
   },
   "files": [

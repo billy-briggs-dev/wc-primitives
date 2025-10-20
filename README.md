@@ -225,6 +225,39 @@ A two-state button that can be toggled on or off.
 **Events**
 - `pressed-change` - Fires when the pressed state changes
 
+### Toolbar
+
+A container for grouping a set of controls, such as buttons, toggle buttons, or dropdown menus.
+
+#### API Reference
+
+**wc-toolbar**
+- `orientation`: `'horizontal' | 'vertical'` - The orientation of the toolbar
+- `disabled`: `boolean` - Disable the entire toolbar
+- `roving-tabindex`: `boolean` - Enable roving tab index for keyboard navigation (default: true)
+
+**wc-toolbar-button**
+- A button element within a toolbar
+- `disabled`: `boolean` - Disable the button
+
+**wc-toolbar-separator**
+- A visual separator between toolbar items
+- `orientation`: `'horizontal' | 'vertical'` - The orientation of the separator
+
+**wc-toolbar-toggle-group**
+- A set of toggle buttons within a toolbar
+- `type`: `'single' | 'multiple'` - Whether one or multiple items can be active
+- `value`: `string` - The controlled value(s) of the toggle group
+- `disabled`: `boolean` - Disable the toggle group
+
+**wc-toolbar-toggle-item**
+- An individual toggle button within a toolbar toggle group
+- `value`: `string` - The value of this toggle item
+- `disabled`: `boolean` - Disable the toggle item
+
+**Events**
+- `value-change` - Fires when the active toggle item(s) change (on wc-toolbar-toggle-group)
+
 ## Styling
 
 All components are headless and come with no default styles. You have complete control over the appearance using CSS:
