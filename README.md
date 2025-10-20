@@ -141,6 +141,21 @@ A two-state button that can be toggled on or off.
 **Events**
 - `pressed-change` - Fires when the pressed state changes
 
+### Tooltip
+
+A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+
+#### API Reference
+
+**wc-tooltip**
+- `open`: `boolean` - The controlled open state of the tooltip
+- `disabled`: `boolean` - Disable the tooltip
+- `delayDuration`: `number` - The delay in milliseconds before showing the tooltip (default: 700)
+- `skipDelayDuration`: `number` - The delay when moving between tooltips (default: 300)
+
+**Events**
+- `open-change` - Fires when the open state changes
+
 ## Styling
 
 All components are headless and come with no default styles. You have complete control over the appearance using CSS:
