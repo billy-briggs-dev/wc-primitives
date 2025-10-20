@@ -141,6 +141,24 @@ A two-state button that can be toggled on or off.
 **Events**
 - `pressed-change` - Fires when the pressed state changes
 
+### Popover
+
+A non-modal dialog that floats near a trigger element, allowing interaction with the rest of the page.
+
+#### API Reference
+
+**wc-popover**
+- `open`: `boolean` - The controlled open state of the popover
+- `modal`: `boolean` - When true, clicking outside closes the popover
+- `disabled`: `boolean` - Disable the entire popover
+
+**wc-popover-content**
+- `side`: `'top' | 'right' | 'bottom' | 'left'` - Position relative to trigger (default: 'bottom')
+- `align`: `'start' | 'center' | 'end'` - Alignment relative to trigger (default: 'center')
+
+**Events**
+- `open-change` - Fires when the open state changes
+
 ## Styling
 
 All components are headless and come with no default styles. You have complete control over the appearance using CSS:
