@@ -38,6 +38,15 @@ export {
 export { ToggleElement } from './components/toggle/index.js';
 
 export {
+  PopoverElement,
+  PopoverTriggerElement,
+  PopoverAnchorElement,
+  PopoverPortalElement,
+  PopoverContentElement,
+  PopoverCloseElement,
+} from './components/popover/index.js';
+
+export {
   ToolbarElement,
   ToolbarButtonElement,
   ToolbarSeparatorElement,
