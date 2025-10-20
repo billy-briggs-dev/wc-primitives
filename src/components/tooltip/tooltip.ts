@@ -53,7 +53,8 @@ export class TooltipElement extends PrimitiveElement {
     if (changedProperties.has('open')) {
       this.setAttribute('data-state', this.open ? 'open' : 'closed');
       this._notifyChange();
-      this._updateChildComponents();
+      // Schedule child updates in a microtask to avoid update-during-update warning
+      queueMicrotask(() => this._updateChildComponents());
     }
 
     if (changedProperties.has('disabled')) {
