@@ -13,7 +13,7 @@ import { PrimitiveElement } from '../primitive-element.js';
  * 
  * @example
  * ```html
- * <wc-slot>
+ * <wc-slot asChild data-custom="value">
  *   <button>Click me</button>
  * </wc-slot>
  * ```
@@ -21,21 +21,23 @@ import { PrimitiveElement } from '../primitive-element.js';
 @customElement('wc-slot')
 export class SlotElement extends PrimitiveElement {
   /**
-   * When true, prevents merging props and just renders the child as-is
+   * When true, enables merging props to the child element
    */
   @property({ type: Boolean })
   asChild = false;
 
   private _childElement: Element | null = null;
+  private _observer: MutationObserver | null = null;
 
   override connectedCallback() {
     super.connectedCallback();
-    this._setupSlot();
+    this._setupObserver();
+    this._mergePropsToChild();
   }
 
   override disconnectedCallback() {
     super.disconnectedCallback();
-    this._cleanupSlot();
+    this._cleanupObserver();
   }
 
   override updated(changedProperties: PropertyValues) {
@@ -46,30 +48,36 @@ export class SlotElement extends PrimitiveElement {
     }
   }
 
-  private _setupSlot() {
-    // Listen for slot changes
-    this.addEventListener('slotchange', this._handleSlotChange);
+  private _setupObserver() {
+    // Use MutationObserver to detect changes to child elements in light DOM
+    this._observer = new MutationObserver(() => {
+      this._mergePropsToChild();
+    });
+
+    this._observer.observe(this, {
+      childList: true,
+      subtree: true,
+    });
   }
 
-  private _cleanupSlot() {
-    this.removeEventListener('slotchange', this._handleSlotChange);
+  private _cleanupObserver() {
+    if (this._observer) {
+      this._observer.disconnect();
+      this._observer = null;
+    }
   }
-
-  private _handleSlotChange = () => {
-    this._mergePropsToChild();
-  };
 
   private _mergePropsToChild() {
     if (!this.asChild) return;
 
-    // Get the slotted child element
-    const slot = this.querySelector('slot');
-    if (!slot) return;
+    // Get the first child element (in light DOM, children are direct children)
+    const children = Array.from(this.children).filter(
+      (child) => child.tagName.toLowerCase() !== 'slot'
+    );
+    
+    if (children.length === 0) return;
 
-    const assignedElements = slot.assignedElements();
-    if (assignedElements.length === 0) return;
-
-    this._childElement = assignedElements[0];
+    this._childElement = children[0];
 
     // Merge data attributes from this element to the child
     Array.from(this.attributes).forEach((attr) => {

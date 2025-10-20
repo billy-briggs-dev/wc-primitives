@@ -33,7 +33,7 @@ export class VisuallyHiddenElement extends PrimitiveElement {
     style.padding = '0';
     style.margin = '-1px';
     style.overflow = 'hidden';
-    style.clip = 'rect(0, 0, 0, 0)';
+    style.clipPath = 'inset(50%)';
     style.whiteSpace = 'nowrap';
     style.borderWidth = '0';
   }

@@ -44,9 +44,7 @@ export class DirectionProviderElement extends PrimitiveElement {
   }
 
   private _applyDirection() {
-    // Set the dir attribute on the element
-    this.setAttribute('dir', this.dir);
-    
+    // The dir attribute is already synced via reflect: true
     // Dispatch event to notify children of direction change
     this.dispatchCustomEvent('direction-change', { dir: this.dir });
   }

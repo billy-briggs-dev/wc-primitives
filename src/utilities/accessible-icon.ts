@@ -32,10 +32,6 @@ export class AccessibleIconElement extends PrimitiveElement {
     this._setupIcon();
   }
 
-  override updated() {
-    this._setupIcon();
-  }
-
   private _setupIcon() {
     // Mark all child elements as decorative (hidden from screen readers)
     const children = Array.from(this.children);

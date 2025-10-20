@@ -34,6 +34,7 @@ export class PortalElement extends PrimitiveElement {
 
   private _portalContainer: HTMLElement | null = null;
   private _portalContent: HTMLElement | null = null;
+  private _originalNodes: Node[] = [];
 
   override connectedCallback() {
     super.connectedCallback();
@@ -55,17 +56,11 @@ export class PortalElement extends PrimitiveElement {
 
   private _setupPortal() {
     this._updatePortal();
-    this.addEventListener('slotchange', this._handleSlotChange);
   }
 
   private _cleanupPortal() {
-    this.removeEventListener('slotchange', this._handleSlotChange);
     this._removePortalContent();
   }
-
-  private _handleSlotChange = () => {
-    this._updatePortal();
-  };
 
   private _getPortalContainer(): HTMLElement {
     if (this.container) {
@@ -78,9 +73,9 @@ export class PortalElement extends PrimitiveElement {
   }
 
   private _updatePortal() {
-    // If disabled, remove portal content and render in place
+    // If disabled, restore content and render in place
     if (this.disabled) {
-      this._removePortalContent();
+      this._restoreContent();
       return;
     }
 
@@ -93,23 +88,37 @@ export class PortalElement extends PrimitiveElement {
       this._portalContent.setAttribute('data-wc-portal', '');
     }
 
-    // Get slotted content
-    const slot = this.querySelector('slot');
-    if (slot) {
-      const assignedNodes = slot.assignedNodes();
-      
-      // Move slotted content to portal container
-      assignedNodes.forEach((node) => {
-        if (this._portalContent && node.nodeType === Node.ELEMENT_NODE) {
-          this._portalContent.appendChild(node.cloneNode(true));
+    // Get child nodes (in light DOM, children are direct children)
+    const children = Array.from(this.childNodes).filter(
+      (node) => node.nodeName.toLowerCase() !== 'slot'
+    );
+
+    // Store original nodes for restoration
+    this._originalNodes = children;
+
+    // Move child nodes to portal container
+    children.forEach((node) => {
+      if (this._portalContent) {
+        this._portalContent.appendChild(node);
+      }
+    });
+
+    // Append portal content to portal container
+    if (this._portalContainer && this._portalContent) {
+      this._portalContainer.appendChild(this._portalContent);
+    }
+  }
+
+  private _restoreContent() {
+    // Move content back from portal to original location
+    if (this._portalContent && this._originalNodes.length > 0) {
+      this._originalNodes.forEach((node) => {
+        if (node.parentNode === this._portalContent) {
+          this.appendChild(node);
         }
       });
-
-      // Append portal content to portal container
-      if (this._portalContainer && this._portalContent) {
-        this._portalContainer.appendChild(this._portalContent);
-      }
     }
+    this._removePortalContent();
   }
 
   private _removePortalContent() {
@@ -124,7 +133,7 @@ export class PortalElement extends PrimitiveElement {
       return html`<slot></slot>`;
     }
     // Otherwise, don't render anything (content is portaled)
-    return html`<slot style="display: none;"></slot>`;
+    return html``;
   }
 }
 
