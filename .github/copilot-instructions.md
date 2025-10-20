@@ -208,13 +208,24 @@ Always include:
 ### Step 4: Create Tests
 
 ```typescript
-import { describe, it, expect, beforeEach } from 'vitest';
-import { fixture, html } from '@open-wc/testing-helpers';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import './new-component.js';
 
 describe('WcNewComponent', () => {
-  it('should render', async () => {
-    const el = await fixture(html`<wc-new-component></wc-new-component>`);
+  let container: HTMLDivElement;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(container);
+  });
+
+  it('should render', () => {
+    container.innerHTML = `<wc-new-component></wc-new-component>`;
+    const el = container.querySelector('wc-new-component');
     expect(el).toBeDefined();
   });
 });
@@ -268,13 +279,28 @@ export * from './components/new-component/index.js';
 ### Testing Components
 
 ```typescript
-import { fixture, html } from '@open-wc/testing-helpers';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import './component.js';
 
-it('should have proper aria attributes', async () => {
-  const el = await fixture(html`<wc-component></wc-component>`);
-  const button = el.querySelector('[role="button"]');
-  expect(button).toHaveAttribute('aria-expanded');
+describe('Component Tests', () => {
+  let container: HTMLDivElement;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(container);
+  });
+
+  it('should have proper aria attributes', async () => {
+    container.innerHTML = `<wc-component></wc-component>`;
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    const button = container.querySelector('[role="button"]');
+    expect(button?.getAttribute('aria-expanded')).toBe('false');
+  });
 });
 ```
 
@@ -282,14 +308,21 @@ it('should have proper aria attributes', async () => {
 
 ```typescript
 it('should dispatch custom event', async () => {
-  const el = await fixture(html`<wc-component></wc-component>`);
+  container.innerHTML = `<wc-component></wc-component>`;
+  await new Promise(resolve => setTimeout(resolve, 100));
+  
+  const el = container.querySelector('wc-component');
   
   let eventFired = false;
-  el.addEventListener('value-change', () => {
+  el?.addEventListener('value-change', () => {
     eventFired = true;
   });
   
-  // Trigger action
+  // Trigger action (e.g., click a button)
+  const button = el?.querySelector('button');
+  button?.click();
+  await new Promise(resolve => setTimeout(resolve, 50));
+  
   expect(eventFired).toBe(true);
 });
 ```
