@@ -311,6 +311,125 @@ A container for grouping a set of controls, such as buttons, toggle buttons, or 
 **Events**
 - `value-change` - Fires when the active toggle item(s) change (on wc-toolbar-toggle-group)
 
+### Separator
+
+A visual or semantic separator between content sections.
+
+#### API Reference
+
+**wc-separator**
+- `orientation`: `'horizontal' | 'vertical'` - The orientation of the separator (default: 'horizontal')
+- `decorative`: `boolean` - Whether the separator is purely decorative (default: false)
+
+**Example:**
+```html
+<div>Section 1</div>
+<wc-separator></wc-separator>
+<div>Section 2</div>
+```
+
+### Scroll Area
+
+A scrollable area with custom styled scrollbars.
+
+#### API Reference
+
+**wc-scroll-area**
+- `type`: `'auto' | 'always' | 'scroll' | 'hover'` - When to show scrollbars (default: 'hover')
+- `scroll-hide-delay`: `number` - Delay in ms before hiding scrollbars (default: 600)
+
+**wc-scroll-area-viewport**
+- Contains the scrollable content
+
+**wc-scroll-area-scrollbar**
+- `orientation`: `'horizontal' | 'vertical'` - Scrollbar orientation (default: 'vertical')
+
+**wc-scroll-area-thumb**
+- The draggable thumb of the scrollbar
+
+**wc-scroll-area-corner**
+- Corner element between horizontal and vertical scrollbars
+
+**Events**
+- `scroll` - Fires when the viewport is scrolled
+
+**Example:**
+```html
+<wc-scroll-area>
+  <wc-scroll-area-viewport>
+    <div>Long scrollable content...</div>
+  </wc-scroll-area-viewport>
+  <wc-scroll-area-scrollbar orientation="vertical">
+    <wc-scroll-area-thumb></wc-scroll-area-thumb>
+  </wc-scroll-area-scrollbar>
+  <wc-scroll-area-scrollbar orientation="horizontal">
+    <wc-scroll-area-thumb></wc-scroll-area-thumb>
+  </wc-scroll-area-scrollbar>
+  <wc-scroll-area-corner></wc-scroll-area-corner>
+</wc-scroll-area>
+```
+
+### Select
+
+A dropdown select component for choosing from a list of options.
+
+#### API Reference
+
+**wc-select**
+- `value`: `string` - The selected value
+- `open`: `boolean` - The open state of the dropdown
+- `disabled`: `boolean` - Disable the select
+- `required`: `boolean` - Whether selection is required
+- `name`: `string` - Name for form submission
+
+**wc-select-trigger**
+- The button that opens the select
+
+**wc-select-value**
+- `placeholder`: `string` - Placeholder text when no value selected
+
+**wc-select-icon**
+- Optional icon (typically a chevron)
+
+**wc-select-content**
+- `side`: `'top' | 'right' | 'bottom' | 'left'` - Preferred side (default: 'bottom')
+- `align`: `'start' | 'center' | 'end'` - Alignment (default: 'start')
+
+**wc-select-viewport**
+- Scrollable container for items
+
+**wc-select-item**
+- `value`: `string` - The item value
+- `disabled`: `boolean` - Disable the item
+
+**wc-select-group**
+- Groups related items
+
+**wc-select-label**
+- Label for a group
+
+**Events**
+- `value-change` - Fires when selected value changes
+- `open-change` - Fires when open state changes
+
+**Example:**
+```html
+<wc-select value="apple">
+  <wc-select-trigger>
+    <wc-select-value placeholder="Select a fruit..."></wc-select-value>
+  </wc-select-trigger>
+  <wc-select-portal>
+    <wc-select-content>
+      <wc-select-viewport>
+        <wc-select-item value="apple">Apple</wc-select-item>
+        <wc-select-item value="banana">Banana</wc-select-item>
+        <wc-select-item value="orange">Orange</wc-select-item>
+      </wc-select-viewport>
+    </wc-select-content>
+  </wc-select-portal>
+</wc-select>
+```
+
 ## Styling
 
 All components are headless and come with no default styles. You have complete control over the appearance using CSS:
