@@ -202,8 +202,8 @@ describe('Tooltip Component', () => {
 
     const content = container.querySelector('wc-tooltip-content') as HTMLElement;
 
-    // Content should be hidden initially
-    expect(content.style.display).toBe('none');
+    // Content should have data-state="closed" initially
+    expect(content.getAttribute('data-state')).toBe('closed');
   });
 
   it('should dispatch open-change event', async () => {

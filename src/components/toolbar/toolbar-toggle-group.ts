@@ -1,5 +1,5 @@
 import { html, PropertyValues } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
 
 /**
@@ -46,7 +46,6 @@ export class ToolbarToggleGroupElement extends PrimitiveElement {
   @property({ type: Boolean })
   disabled = false;
 
-  @state()
   private _activeValues: Set<string> = new Set();
 
   override connectedCallback() {
@@ -65,7 +64,8 @@ export class ToolbarToggleGroupElement extends PrimitiveElement {
 
     if (changedProperties.has('value')) {
       this._activeValues = new Set(this.value.split(',').map(v => v.trim()).filter(Boolean));
-      this._updateChildComponents();
+      // Schedule child updates in a microtask to avoid update-during-update warning
+      queueMicrotask(() => this._updateChildComponents());
     }
 
     if (changedProperties.has('disabled')) {
@@ -74,7 +74,8 @@ export class ToolbarToggleGroupElement extends PrimitiveElement {
       } else {
         this.removeAttribute('data-disabled');
       }
-      this._updateChildComponents();
+      // Schedule child updates in a microtask to avoid update-during-update warning
+      queueMicrotask(() => this._updateChildComponents());
     }
   }
 
@@ -103,7 +104,7 @@ export class ToolbarToggleGroupElement extends PrimitiveElement {
 
     this.value = Array.from(this._activeValues).join(',');
     this._notifyChange();
-    this._updateChildComponents();
+    // Don't call _updateChildComponents here - it will be called by updated() lifecycle
   }
 
   /**

@@ -72,15 +72,6 @@ export class TooltipContentElement extends PrimitiveElement {
     const tooltip = this.closest('wc-tooltip') as TooltipElement | null;
     if (tooltip) {
       this.setAttribute('data-state', tooltip.open ? 'open' : 'closed');
-      
-      // Hide content when tooltip is closed
-      if (!tooltip.open) {
-        this.style.display = 'none';
-        this.style.pointerEvents = 'none';
-      } else {
-        this.style.display = '';
-        this.style.pointerEvents = 'auto';
-      }
     }
   }
 
