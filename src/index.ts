@@ -82,6 +82,16 @@ export {
   ScrollAreaCornerElement,
 } from './components/scroll-area/index.js';
 
+export { AspectRatioElement } from './components/aspect-ratio/index.js';
+
+export {
+  AvatarElement,
+  AvatarImageElement,
+  AvatarFallbackElement,
+} from './components/avatar/index.js';
+
+export { CheckboxElement } from './components/checkbox/index.js';
+
 // Utilities
 export {
   VisuallyHiddenElement,
