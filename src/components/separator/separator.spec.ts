@@ -67,8 +67,8 @@ describe('Separator Component', () => {
     container.innerHTML = `<wc-separator></wc-separator>`;
     await new Promise(resolve => setTimeout(resolve, 100));
     
-    const separator = container.querySelector('wc-separator') as any;
-    separator.orientation = 'vertical';
+    const separator = container.querySelector('wc-separator');
+    separator?.setAttribute('orientation', 'vertical');
     await new Promise(resolve => setTimeout(resolve, 100));
     
     expect(separator?.getAttribute('data-orientation')).toBe('vertical');
@@ -79,10 +79,10 @@ describe('Separator Component', () => {
     container.innerHTML = `<wc-separator></wc-separator>`;
     await new Promise(resolve => setTimeout(resolve, 100));
     
-    const separator = container.querySelector('wc-separator') as any;
+    const separator = container.querySelector('wc-separator');
     expect(separator?.getAttribute('role')).toBe('separator');
     
-    separator.decorative = true;
+    separator?.setAttribute('decorative', '');
     await new Promise(resolve => setTimeout(resolve, 100));
     
     expect(separator?.getAttribute('role')).toBe('none');

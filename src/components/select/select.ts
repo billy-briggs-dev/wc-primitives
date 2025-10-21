@@ -65,9 +65,6 @@ export class SelectElement extends PrimitiveElement {
   @state()
   private _selectedLabel = '';
 
-  private _triggerElement?: HTMLElement;
-  private _contentElement?: HTMLElement;
-
   override connectedCallback() {
     super.connectedCallback();
     this.setAttribute('data-select-root', '');

@@ -123,8 +123,8 @@ describe('Scroll Area Component', () => {
     `;
     await new Promise(resolve => setTimeout(resolve, 100));
     
-    const scrollArea = container.querySelector('wc-scroll-area') as any;
-    scrollArea.type = 'always';
+    const scrollArea = container.querySelector('wc-scroll-area');
+    scrollArea?.setAttribute('type', 'always');
     await new Promise(resolve => setTimeout(resolve, 100));
     
     expect(scrollArea?.getAttribute('data-type')).toBe('always');

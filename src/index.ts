@@ -82,6 +82,21 @@ export {
   ScrollAreaCornerElement,
 } from './components/scroll-area/index.js';
 
+export {
+  SelectElement,
+  SelectTriggerElement,
+  SelectValueElement,
+  SelectIconElement,
+  SelectPortalElement,
+  SelectContentElement,
+  SelectViewportElement,
+  SelectItemElement,
+  SelectItemTextElement,
+  SelectItemIndicatorElement,
+  SelectGroupElement,
+  SelectLabelElement,
+} from './components/select/index.js';
+
 export { AspectRatioElement } from './components/aspect-ratio/index.js';
 
 export {

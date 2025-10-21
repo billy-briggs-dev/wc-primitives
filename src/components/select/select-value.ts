@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { PrimitiveElement } from '../../primitive-element.js';
+import type { SelectElement } from './select.js';
 
 /**
  * Select Value Component
@@ -44,7 +45,7 @@ export class SelectValueElement extends PrimitiveElement {
   };
 
   private _updateValue() {
-    const select = this.closest('wc-select') as any;
+    const select = this.closest('wc-select') as SelectElement | null;
     if (!select) return;
 
     const selectedLabel = select.getSelectedLabel();
